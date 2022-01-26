@@ -1,16 +1,17 @@
 #!/usr/bin/python3
 # Generate arrows.html with svg images of piece movement
 
-# TODO:
+# Works:
 # - castling
-# - en passant
 # - promotion
+# - en passant
 
+import sys
 import chess
 import chess.pgn
 import chess.svg
 
-gamefile = "game2.pgn"
+gamefile = "game3.pgn"
 f = open(gamefile, 'r')
 game = chess.pgn.read_game(f)
 board = chess.Board()
@@ -32,7 +33,7 @@ winitial = {
     'wBc': 'c1',
     'wQ':  'd1',
     'wK':  'e1',
-    'wBf': 'f2',
+    'wBf': 'f1',
     'wNg': 'g1',
     'wRh': 'h1'
 }
@@ -60,14 +61,50 @@ binitial = {
 }
 blast = {}
 
+def update_enpassant(mv, a, b, c, d):
+    # Always the pawn at the column with the move target (c)
+    if d == '6':
+        color = 'b'
+        last = blast
+    if d == '3':
+        color = 'w'
+        last = wlast
+    pawn = color + 'p' + c
+    last[pawn].append('C')
+
+# Do rook move after casling
+def update_castling(mv):
+    # White kingside, K e1g1, R h1f1
+    m = str(mv)
+    if m == "e1g1":
+        wlast['wRh'].append("f1")
+    # White queenside, K e1c1, R a1d1
+    if m == "e1c1":
+        wlast['wRa'].append("d1")
+
+    # Black kingside, K e8g8, R h8f8
+    if m == "e8g8":
+        blast['bRh'].append("f8")
+    # Black queenside, K e8c8, R a8d8
+    if m == "e8c8":
+        blast['bRa'].append("d8")
+
 def update_move(pmoves, oppmoves, mv, castling, enpassant):
     #print(f"UPDATE: {mfrom} -> {mto}")
     capture = board.is_capture(mv)
-    a, b, c, d = str(mv)
+    if mv.promotion:
+        a, b, c, d, e = str(mv)
+        print(f"Promotion on {c+d} to {e} ", str(mv))
+    else:
+        a, b, c, d = str(mv)
+    if castling:
+        print("Casling: ", mv)
+        update_castling(mv)
+    if enpassant:
+        print("En passant: ", mv)
+        update_enpassant(mv, a, b, c, d)
     mfrom = a + b
     mto = c + d
-    if castling:
-        print("CASTLING")
     for k, v in pmoves.items():
         #print(f"k={k} v={v}")
         if mfrom == v[-1]:
@@ -106,6 +143,8 @@ for mv in game.mainline_moves():
     turn = board.turn
     castling = board.is_castling(mv)
     enpassant = board.is_en_passant(mv)
+
+    # Make the move
     board.push(mv)
     if turn == chess.WHITE:
         update_move(wlast, blast, mv, castling, enpassant)
@@ -138,8 +177,8 @@ outhtml = open("arrows.html", "w")
 outhtml.write("<html><body><table>")
 outhtml.write("<tr>")
 
-view = chess.WHITE
 view = chess.BLACK
+view = chess.WHITE
 
 if view == chess.WHITE:
     print("Black movement")
