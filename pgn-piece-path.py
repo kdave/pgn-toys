@@ -12,8 +12,8 @@ import chess.pgn
 import chess.svg
 
 gamefile = "game3.pgn"
-f = open(gamefile, 'r')
-game = chess.pgn.read_game(f)
+with open(gamefile, 'r') as f:
+    game = chess.pgn.read_game(f)
 board = chess.Board()
 
 # Initial positions of white pieces
@@ -127,6 +127,10 @@ def squares_to_moves(slist):
     for i in range(1, len(slist)):
         b = slist[i]
         if b == 'C':
+            prev = slist[i - 1]
+            arr = chess.svg.Arrow(chess.parse_square(prev), chess.parse_square(prev))
+            arr.color = 'blue'
+            ret.append(arr)
             break
         arr = chess.svg.Arrow(chess.parse_square(a), chess.parse_square(b))
         ret.append(arr)
