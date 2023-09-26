@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+## Print FEN of each move (PGN game).
 
 import chess.pgn
 

@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+## Filter games in a given PGN file by players' Elo.
 
 import chess.pgn
 import sys

@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+## Convert a large PGN to sqlite database (selected headers), batched commit for
+## speed up.
 
 import chess
 import chess.pgn

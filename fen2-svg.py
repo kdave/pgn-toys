@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+## Generate SVG image of a given board.
 
 import chess
 import chess.svg

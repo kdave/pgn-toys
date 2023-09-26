@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+## Print headers of all games in a given PGN file.
 
 import chess.pgn
 import sys

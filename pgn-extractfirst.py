@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+## Extract firs N games from a given PGN file
 
 import chess.pgn
 import sys

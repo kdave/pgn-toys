@@ -1,4 +1,6 @@
 #!/usr/bin/python3
+## Experimental PGN move compression, the UCI notation move encoded as 2 bytes,
+## 4 nibbles, e2e4 -> 0x5254 (a -> 1, b -> 2, ...).
 
 import chess.pgn
 import struct

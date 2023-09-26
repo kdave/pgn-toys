@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+## Print game notation in UCI format (like *1. e2e4 (e4)*).
 
 import chess.pgn
 

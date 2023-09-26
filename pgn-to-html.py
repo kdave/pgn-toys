@@ -1,6 +1,6 @@
 #!/usr/bin/python3
-
-# Generate game.html with annotated board (last move, top moves, engine eval)
+## Generate *game.html* with annotated board (last move, top moves, engine eval),
+## navigation buttons (PGN game1.pgn)
 
 # Todo:
 # - analyze but skip book moves

@@ -1,5 +1,7 @@
 #!/usr/bin/python3
-# Generate arrows.html with svg images of piece movement
+## Generate file *arrows.html* with SVG images of piece movement for the whole
+## game.  Sample game is in *arrows.html*, self-contained HTML file with embedded
+## SVG graphics and game moves.
 
 # Works:
 # - castling

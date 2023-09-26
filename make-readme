@@ -1,0 +1,19 @@
+#!/bin/sh
+# Generate README.md from the basic template and file descriptions
+
+exec > README.md
+
+cat README.md.in
+
+for file in *.py */*.py; do
+	echo "Processing: $file" >&2
+	fn=$(basename "$file")
+	if ! grep -q '^##' < "$file"; then
+		continue
+	fi
+		echo " generate text" >&2
+	#echo "**${fn}**:"
+	echo "[**${fn}**](${fn}):"
+	grep '^##' < "$fn" | sed 's/^##\s\+//'
+	echo
+done

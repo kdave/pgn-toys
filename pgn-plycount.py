@@ -1,4 +1,5 @@
 #!/usr/bin/python3
+## Count number of plies (half-moves).
 
 import chess.pgn
 
