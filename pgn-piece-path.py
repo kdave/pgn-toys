@@ -2,6 +2,7 @@
 ## Generate file *arrows.html* with SVG images of piece movement for the whole
 ## game.  Sample game is in *arrows.html*, self-contained HTML file with embedded
 ## SVG graphics and game moves.
+## <br> <img src="examples/piece-path.png" width="768" />
 
 # Works:
 # - castling
