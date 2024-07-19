@@ -1,5 +1,6 @@
 #!/usr/bin/python3
 ## Find defenders of your piece in a given position (Scandi btw).
+## <br> <img src="examples/defenders.png" width="256" />
 
 import chess
 import chess.pgn

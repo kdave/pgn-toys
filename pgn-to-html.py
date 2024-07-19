@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 ## Generate *game.html* with annotated board (last move, top moves, engine eval),
 ## navigation buttons (PGN game1.pgn)
+## <br> <img src="examples/game-eval/pgn-to-html-move.png" width="256" />
 
 # Todo:
 # - analyze but skip book moves

@@ -5,15 +5,24 @@ exec > README.md
 
 cat README.md.in
 
+lastdn=
 for file in *.py */*.py; do
 	echo "Processing: $file" >&2
 	fn=$(basename "$file")
+	dn=$(dirname "$file")
 	if ! grep -q '^##' < "$file"; then
 		continue
 	fi
-		echo " generate text" >&2
-	#echo "**${fn}**:"
-	echo "[**${fn}**](${fn}):"
-	grep '^##' < "$fn" | sed 's/^##\s\+//'
+	echo " generate text" >&2
+	if [ "$lastdn" != "$dn" ]; then
+		echo
+		echo "## $dn"
+		lastdn="$dn"
+	else
+		echo '\'
+	fi
+	# [Text](link)
+	echo "[**${fn}**](${file}):"
+	grep '^##' < "$file" | sed 's/^##\s\+//'
 	echo
 done

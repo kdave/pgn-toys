@@ -1,6 +1,6 @@
 # PGN processing
 
-Random collection of scripts and snppets using `python-chess` to filter,
-convert etc. chess PGN files.
+Random collection of scripts and snippets using `python-chess` to filter,
+convert, visualize etc. chess PGN files.
 
 ## Scripts
